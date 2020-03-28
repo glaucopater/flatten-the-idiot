@@ -5,13 +5,18 @@ export const SCHero = styled.div`
   overflow: hidden;
   height: 200px;
   width: 100px;
+  position: fixed;
+  background: #ffffff;
+  will-change: left, top;
 `;
 
 export const SCIdiot = styled.div`
   border: 1px solid #ff0000;
-  width: 100px;
-  height: 100px;
+  width: 50px;
+  height: 50px;
   overflow: hidden;
+  position: absolute;
+  will-change: left, top;
 `;
 
 export const SCStage = styled.div`
@@ -22,4 +27,5 @@ export const SCStage = styled.div`
   width: 90%;
   min-height: 500px;
   background: green;
+  position: relative;
 `;

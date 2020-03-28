@@ -1,26 +1,35 @@
 import * as React from "react";
 import { SCIdiot } from "../styled";
+import { PositionType } from "../types";
+import { setInitialPosition, updatePosition } from "../utils";
+
+export const initialPosition: PositionType = { x: 0, y: 0 };
 
 const Idiot = (props: any) => {
-  const [position, setPosition] = React.useState([0, 0]);
-  //const [color, setColor] = React.useState();
+  const [position, setPosition] = React.useState(setInitialPosition(props.id));
 
   React.useEffect(() => {
     setInterval(() => {
-      console.log("new event for idiot", props.id);
-      //  setColor("#FFFFFF");
+      //     console.log("new event for idiot", props.id);
     }, 1000);
   }, [props.id]);
 
   const handleOnChangePosition = () => {
-    const [x, y] = position;
-    setPosition([x + 1, y + 1]);
+    setPosition(updatePosition(position));
   };
 
+  console.log("idiot at pos", position);
+
   return (
-    <SCIdiot onClick={handleOnChangePosition}>
+    <SCIdiot
+      onClick={handleOnChangePosition}
+      style={{
+        left: position.x,
+        top: position.y
+      }}
+    >
       <h1>This is idiot: {props.id}</h1>
-      At position {position}
+      At position {position.x} {position.y}
     </SCIdiot>
   );
 };
