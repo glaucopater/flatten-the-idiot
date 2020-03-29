@@ -10,7 +10,14 @@ export const setInitialPosition = (startingPoint: number) => {
   };
 };
 
-export const updatePosition = (position: PositionType) => {
+export const updatePosition = (position: PositionType, eventType?: string) => {
+  console.log("updatePosition -> eventType", eventType);
   const { x, y } = position;
-  return { x: x * 1 + defaultStepSize, y: y * 1 + defaultStepSize };
+  const newPosition = {
+    x: x * 1 + defaultStepSize,
+    y: y * 1 + defaultStepSize
+  };
+
+  console.log("updatePosition -> newPosition", newPosition);
+  return newPosition;
 };

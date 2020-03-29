@@ -5,17 +5,38 @@ import { setInitialPosition, updatePosition } from "../utils";
 
 export const initialPosition: PositionType = { x: 0, y: 0 };
 
+const enableInterval = (
+  props: any,
+  position: PositionType,
+  setPosition: any,
+  setFlag: any
+) => {
+  let localCounter = 0;
+  const intervalId = setInterval(() => {
+    if (localCounter > 3) {
+      setFlag(true);
+      return;
+    }
+    localCounter += 1;
+    console.log("new event for idiot", localCounter);
+    setPosition(updatePosition(position));
+  }, 1000);
+  return intervalId;
+};
+
 const Idiot = (props: any) => {
   const [position, setPosition] = React.useState(setInitialPosition(props.id));
+  const [flag, setFlag] = React.useState(false);
 
   React.useEffect(() => {
-    setInterval(() => {
-      //     console.log("new event for idiot", props.id);
-    }, 1000);
-  }, [props.id]);
+    console.log("useEffect -> props.id", props.id, flag);
+    if (!flag) {
+      enableInterval(props, position, setPosition, setFlag);
+    }
+  }, [props, position, flag]);
 
   const handleOnChangePosition = () => {
-    setPosition(updatePosition(position));
+    setPosition(updatePosition(position, "click"));
   };
 
   console.log("idiot at pos", position);
@@ -28,8 +49,7 @@ const Idiot = (props: any) => {
         top: position.y
       }}
     >
-      <h1>This is idiot: {props.id}</h1>
-      At position {position.x} {position.y}
+      <h1>{props.id}</h1>}
     </SCIdiot>
   );
 };

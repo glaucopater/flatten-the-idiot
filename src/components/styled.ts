@@ -1,5 +1,16 @@
 import styled from "styled-components";
 
+export const SCStage = styled.div`
+  margin: 10px;
+  border: 1px solid blue;
+  display: flex;
+  margin: 0 auto;
+  width: 90%;
+  min-height: 500px;
+  background: green;
+  position: relative;
+`;
+
 export const SCHero = styled.div`
   border: 1px solid #000;
   overflow: hidden;
@@ -17,15 +28,5 @@ export const SCIdiot = styled.div`
   overflow: hidden;
   position: absolute;
   will-change: left, top;
-`;
-
-export const SCStage = styled.div`
-  margin: 10px;
-  border: 1px solid blue;
-  display: flex;
-  margin: 0 auto;
-  width: 90%;
-  min-height: 500px;
-  background: green;
-  position: relative;
+  font-size: 14px;
 `;
