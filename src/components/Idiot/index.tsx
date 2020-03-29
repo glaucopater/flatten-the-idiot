@@ -18,7 +18,6 @@ const enableInterval = (
       return;
     }
     localCounter += 1;
-    console.log("new event for idiot", localCounter);
     setPosition(updatePosition(position));
   }, 1000);
   return intervalId;
@@ -29,7 +28,6 @@ const Idiot = (props: any) => {
   const [flag, setFlag] = React.useState(false);
 
   React.useEffect(() => {
-    console.log("useEffect -> props.id", props.id, flag);
     if (!flag) {
       enableInterval(props, position, setPosition, setFlag);
     }
@@ -39,8 +37,6 @@ const Idiot = (props: any) => {
     setPosition(updatePosition(position, "click"));
   };
 
-  console.log("idiot at pos", position);
-
   return (
     <SCIdiot
       onClick={handleOnChangePosition}
@@ -49,7 +45,9 @@ const Idiot = (props: any) => {
         top: position.y
       }}
     >
-      <h1>{props.id}</h1>}
+      <span role="img" aria-label="student">
+        👨‍🎓
+      </span>
     </SCIdiot>
   );
 };
