@@ -3,7 +3,7 @@ import "./styles.css";
 import Stage from "./components/Stage";
 import Hero from "./components/Hero";
 import Idiot from "./components/Idiot";
-import { isColliding } from "./components/utils";
+import { isColliding, getRandomInt } from "./components/utils";
 
 const collided: number[] = [];
 
@@ -27,20 +27,32 @@ const checkCollision = () => {
   return collided.length;
 };
 
-const enableInterval = (burned: any, setBurned: any) => {
+const enableInterval = (
+  setBurned: any,
+  counter: number,
+  setCounter: any,
+  setRandom: any
+) => {
   const intervalId = setInterval(() => {
     const result = checkCollision();
+    // console.log("intervalId -> enableInterval", counter);
     setBurned(result);
+    setRandom(getRandomInt(1, 3));
+    if (counter < 3) {
+      setCounter(counter + 1);
+    }
   }, 1000);
   return intervalId;
 };
 
 export default function App() {
-  const [burned, setBurned] = React.useState(0);
+  const [, setBurned] = React.useState(0);
+  const [counter, setCounter] = React.useState(0);
+  const [random, setRandom] = React.useState(0);
 
   React.useEffect(() => {
-    enableInterval(burned, setBurned);
-  }, [burned]);
+    const int = enableInterval(setBurned, counter, setCounter, setRandom);
+  }, []);
 
   return (
     <div className="App">
@@ -49,7 +61,14 @@ export default function App() {
       <Stage>
         <Hero />
         {["1", "2", "3"].map(item => (
-          <Idiot key={item} id={item} />
+          <Idiot
+            key={item}
+            id={item}
+            position={{
+              x: +item * (random * 50) + 50, //   1*1*50 +50, 1*2*50 +50 1*3*50+50  100,150,200
+              y: +item + 1 * (random * 50) + 50
+            }}
+          />
         ))}
       </Stage>
     </div>
