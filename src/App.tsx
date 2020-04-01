@@ -35,7 +35,6 @@ const enableInterval = (
 ) => {
   const intervalId = setInterval(() => {
     const result = checkCollision();
-    // console.log("intervalId -> enableInterval", counter);
     setBurned(result);
     setRandom(getRandomInt(1, 3));
     if (counter < 3) {
@@ -51,13 +50,14 @@ export default function App() {
   const [random, setRandom] = React.useState(0);
 
   React.useEffect(() => {
-    const int = enableInterval(setBurned, counter, setCounter, setRandom);
-  }, []);
+    enableInterval(setBurned, counter, setCounter, setRandom);
+  }, [counter]);
 
   return (
     <div className="App">
-      <h1>Flat the idiots</h1>
-      <h2>Idiots burned: {collided.length}</h2>
+      <h1>Flatten the idiots (ver α)</h1>
+      <h2>WASD to move, K to burn</h2>
+      <h3>Idiots burned: {collided.length}</h3>
       <Stage>
         <Hero />
         {["1", "2", "3"].map(item => (
