@@ -2,25 +2,21 @@ import * as React from "react";
 import { SCIdiot } from "../styled";
 
 const Idiot = (props: any) => {
-  const [position, setPosition] = React.useState([0, 0]);
-  //const [color, setColor] = React.useState();
+  const { position } = props;
 
-  React.useEffect(() => {
-    setInterval(() => {
-      console.log("new event for idiot", props.id);
-      //  setColor("#FFFFFF");
-    }, 1000);
-  }, [props.id]);
-
-  const handleOnChangePosition = () => {
-    const [x, y] = position;
-    setPosition([x + 1, y + 1]);
-  };
+  const styles = React.useMemo(
+    () => ({
+      left: position.x,
+      top: position.y
+    }),
+    [position]
+  );
 
   return (
-    <SCIdiot onClick={handleOnChangePosition}>
-      <h1>This is idiot: {props.id}</h1>
-      At position {position}
+    <SCIdiot style={styles}>
+      <span role="img" aria-label="student">
+        👨‍🎓
+      </span>
     </SCIdiot>
   );
 };

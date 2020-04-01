@@ -2,13 +2,10 @@
   font-family: sans-serif;
   text-align: center;
   display: flex;
+  position: relative;
+  flex-direction: column;
 }
 
-.App:first-child {
-  margin: 10px;
-  border: 1px solid blue;
-  display: flex;
-  margin: 0 auto;
-  width: 90%;
-  min-height: 500px;
+.selected {
+  border: 3px red dashed;
 }
