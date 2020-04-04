@@ -8,13 +8,12 @@ const initialState = {
   fire: false,
 };
 
-const controls = (
-  state = initialState,
-  action: { type: any; buttonPressed: boolean }
-) => {
+const controls = (state = initialState, action: any) => {
   let draft = {
     ...initialState,
   };
+
+  console.log("controls -> action", action);
   switch (action.type) {
     case constants.UP_PRESSED:
       draft!.up = true;
@@ -29,12 +28,12 @@ const controls = (
       draft!.right = true;
       break;
     case constants.FIRE_PRESSED:
-      draft!.fire = true;
+      draft!.fire = !state.fire;
       break;
     default:
       draft = state;
   }
-  return controls;
+  return draft;
 };
 
 export default controls;

@@ -7,7 +7,8 @@ const Idiot = (props: any) => {
   const styles = React.useMemo(
     () => ({
       left: position.x,
-      top: position.y
+      top: position.y,
+      zIndex: 1
     }),
     [position]
   );

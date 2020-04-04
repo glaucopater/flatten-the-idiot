@@ -22,13 +22,11 @@ const Hero = (props: any) => {
     setPosition(updatePosition(position));
   };
 
-  let upPressed = props.up;
-  let leftPressed = props.left;
-  let rightPressed = props.right;
-  let downPressed = props.down;
-  let crispPressed = props.fire;
-
-  console.log("Hero -> props", props, upPressed);
+  let upPressed = props.controls.up;
+  let leftPressed = props.controls.left;
+  let rightPressed = props.controls.right;
+  let downPressed = props.controls.down;
+  let crispPressed = props.controls.fire;
 
   let left = position.x;
   let top = position.y;
@@ -66,6 +64,6 @@ const Hero = (props: any) => {
 
 export default connect(
   (state: RootState) => {
-    return { controls: state.controls };
-  }, {}
+    return { controls: state.controls, ...state };
+  }
 )(Hero);

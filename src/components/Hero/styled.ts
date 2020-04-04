@@ -5,6 +5,7 @@ export const SCHero = styled.div`
   position: fixed;
   will-change: left, top;
   display: flex;
+  z-index: 10;
 `;
 
 export const SCHeroImage = styled.img`

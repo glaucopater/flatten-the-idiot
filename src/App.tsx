@@ -25,7 +25,7 @@ const enableInterval = (
     if (counter < 3) {
       setCounter(counter + 1);
     }
-  }, 5000);
+  }, 3000);
   return intervalId;
 };
 
@@ -36,11 +36,9 @@ const App = (props: any) => {
 
   React.useEffect(() => {
     enableInterval(counter, setCounter, setRandom, setCollisions);
-  }, [counter]);
+  }, []);
 
   const { increaseScore, score } = props;
-
-  console.log("App -> props", props)
 
   React.useEffect(() => {
     if (collisions.length > 0)

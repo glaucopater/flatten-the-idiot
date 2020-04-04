@@ -5,6 +5,6 @@ export const SCFlame = styled.div`
   height: 24px;
   font-size: 14px;
   > img {
-    z-index: 1000;
+    z-index: 10;
   }
 `;
