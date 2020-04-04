@@ -2,8 +2,8 @@ import * as React from "react";
 import { SCHero, SCHeroImage } from "../styled";
 import FlameContainer from "../FlameContainer";
 import useKeyPress from "../../hooks/use-key-press";
-import { PositionType } from "../types";
-import { updatePosition } from "../utils";
+import { PositionType } from "../../types";
+import { updatePosition } from "../../utils";
 import HeroImage from "../../assets/images/hero.png";
 
 export const initialPosition: PositionType = { x: 0, y: 100 };
