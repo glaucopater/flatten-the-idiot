@@ -2,7 +2,6 @@ import * as constants from "../constants";
 
 const score = (state = 0, action: { type: any; score: number }) => {
   let score;
-  console.log("reducer score", state, action.type);
   switch (action.type) {
     case constants.SET_SCORE:
       score = action.score;

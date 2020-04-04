@@ -2,6 +2,7 @@ import * as React from "react";
 import "./styles.css";
 import GameArea from "./components/GameArea";
 import GameInfo from "./components/GameInfo";
+import GameControls from "./components/GameControls";
 import Hero from "./components/Hero";
 import Idiot from "./components/Idiot";
 import { checkCollision, getRandomInt } from "./utils";
@@ -39,6 +40,8 @@ const App = (props: any) => {
 
   const { increaseScore, score } = props;
 
+  console.log("App -> props", props)
+
   React.useEffect(() => {
     if (collisions.length > 0)
       increaseScore(collisions.length);
@@ -63,6 +66,7 @@ const App = (props: any) => {
           />
         ))}
       </GameArea>
+      <GameControls />
     </div>
   );
 };
@@ -70,6 +74,5 @@ const App = (props: any) => {
 export default connect(
   (state: RootState) => {
     return { score: state.score };
-  },
-  { setScore, increaseScore, decreaseScore }
+  }, { setScore, increaseScore, decreaseScore }
 )(App);
