@@ -1,6 +1,7 @@
 import * as React from "react";
 import "./styles.css";
-import Stage from "./components/Stage";
+import GameArea from "./components/GameArea";
+import GameInfo from "./components/GameInfo";
 import Hero from "./components/Hero";
 import Idiot from "./components/Idiot";
 import { checkCollision, getRandomInt } from "./utils";
@@ -36,7 +37,7 @@ const App = (props: any) => {
     enableInterval(counter, setCounter, setRandom, setCollisions);
   }, [counter]);
 
-  const { increaseScore } = props;
+  const { increaseScore, score } = props;
 
   React.useEffect(() => {
     if (collisions.length > 0)
@@ -48,10 +49,8 @@ const App = (props: any) => {
   return (
     <div className="App">
       <h1>Crisp the idiots</h1>
-      <h2>WASD to move, K to crisp</h2>
-      <h3>Idiots crisped: {collisions.length}</h3>
-      <h3>Score: {props.score}</h3>
-      <Stage>
+      <GameInfo score={score} idiotsCrisped={collisions.length} />
+      <GameArea>
         <Hero />
         {idiotsValues.map(item => (
           <Idiot
@@ -63,7 +62,7 @@ const App = (props: any) => {
             }}
           />
         ))}
-      </Stage>
+      </GameArea>
     </div>
   );
 };

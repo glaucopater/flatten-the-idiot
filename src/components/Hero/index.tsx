@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SCHero, SCHeroImage } from "../styled";
+import { SCHero, SCHeroImage } from "./styled";
 import FlameContainer from "../FlameContainer";
 import useKeyPress from "../../hooks/use-key-press";
 import { PositionType } from "../../types";
@@ -14,7 +14,7 @@ const Hero = () => {
   const a = useKeyPress("a");
   const s = useKeyPress("s");
   const d = useKeyPress("d");
-  const space = useKeyPress("k");
+  const k = useKeyPress("k");
 
   const handleOnChangePosition = () => {
     setPosition(updatePosition(position));
@@ -35,19 +35,24 @@ const Hero = () => {
     top = position.y += 10;
   } else top = position.y;
 
+
+
+  const heroStyle = {
+    left: left,
+    top: top,
+    borderColor: d || a || w || s ? "#0000ff50" : "#ffffff50",
+    transform: a ? "scale(-1,1)" : "none"
+  };
+
+
   return (
     <SCHero
       onClick={handleOnChangePosition}
-      style={{
-        left: left,
-        top: top,
-        borderColor: d || a || w || s ? "#0000ff50" : "#ffffff50",
-        transform: a ? "scale(-1,1)" : "none",
-        flexDirection: a ? "row-reverse" : "row"
-      }}
+      style={{ flexDirection: a ? "row-reverse" : "row", ...heroStyle }}
     >
+      {a && k && <FlameContainer size={3} />}
       <SCHeroImage src={HeroImage} />
-      {space && <FlameContainer size={3} />}
+      {!a && k && <FlameContainer size={3} />}
     </SCHero>
   );
 };

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { SCFlameContainer } from "../styled";
+import { SCFlameContainer } from "./styled";
 import Flame from "../Flame";
 
 const FlameContainer = ({ size }: { size: number }) => {
