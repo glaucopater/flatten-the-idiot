@@ -8,6 +8,7 @@ import Idiot from "./components/Idiot";
 import { checkCollision, getRandomInt } from "./utils";
 import { connect } from "react-redux";
 import { setScore, increaseScore, decreaseScore } from "./store/actions/score";
+import { decreaseIdiotsCount } from "./store/actions/idiotsCount";
 import { RootState } from "./store/reducers/index";
 import { collisionType } from "./types";
 
@@ -38,22 +39,24 @@ const App = (props: any) => {
     enableInterval(counter, setCounter, setRandom, setCollisions);
   }, []);
 
-  const { increaseScore, score } = props;
+  const { increaseScore, score, decreaseIdiotsCount, idiotsCount } = props;
 
   React.useEffect(() => {
-    if (collisions.length > 0)
+    if (collisions.length > 0) {
       increaseScore(collisions.length);
+      decreaseIdiotsCount(1);
+    }
   }, [collisions.length, increaseScore]);
 
-  const idiotsValues = Array.from(Array(3).keys()).map(e => (e + 1).toString());
+  const idiotsValues = Array.from(Array(idiotsCount).keys()).map(e => (e + 1).toString());
 
   return (
     <div className="App">
       <h1>Crisp the idiots</h1>
-      <GameInfo score={score} idiotsCrisped={collisions.length} />
+      <GameInfo score={score} idiotsCrisped={collisions.length} idiotsCount={idiotsCount} />
       <GameArea>
         <Hero />
-        {idiotsValues.map(item => (
+        {idiotsValues.length > 0 && idiotsValues.map(item => (
           <Idiot
             key={item}
             id={item}
@@ -71,6 +74,6 @@ const App = (props: any) => {
 
 export default connect(
   (state: RootState) => {
-    return { score: state.score };
-  }, { setScore, increaseScore, decreaseScore }
+    return { score: state.score, idiotsCount: state.idiotsCount };
+  }, { setScore, increaseScore, decreaseScore, decreaseIdiotsCount }
 )(App);

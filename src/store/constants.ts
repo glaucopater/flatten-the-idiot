@@ -1,7 +1,9 @@
 export const SET_SCORE = "SET_SCORE";
 export const INCREASE_SCORE = "INCREASE_SCORE";
 export const DECREASE_SCORE = "DECREASE_SCORE";
-export const BURN_IDIOT = "BURN_IDIOT";
+export const SET_IDIOTS = "SET_IDIOTS";
+export const INCREASE_IDIOTS = "INCREASE_IDIOTS";
+export const DECREASE_IDIOTS = "DECREASE_IDIOTS";
 export const UP_PRESSED = "UP_PRESSED";
 export const DOWN_PRESSED = "DOWN_PRESSED";
 export const LEFT_PRESSED = "LEFT_PRESSED";
