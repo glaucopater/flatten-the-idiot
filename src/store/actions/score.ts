@@ -20,10 +20,3 @@ export const decreaseScore = (score: number) => {
     score,
   };
 };
-
-export const burnIdiots = (idiots: number) => {
-  return {
-    type: constants.BURN_IDIOT,
-    idiots,
-  };
-};

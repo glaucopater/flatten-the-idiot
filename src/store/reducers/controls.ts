@@ -13,7 +13,6 @@ const controls = (state = initialState, action: any) => {
     ...initialState,
   };
 
-  console.log("controls -> action", action);
   switch (action.type) {
     case constants.UP_PRESSED:
       draft!.up = true;

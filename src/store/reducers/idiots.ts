@@ -1,19 +1,26 @@
 import * as constants from "../constants";
 
-const initialState = { idiots: 3 };
+const defaultIdiotsCount = 5;
 
-const idiots = (state = 0, action: any) => {
-  let idiots;
-  console.log("idiots -> action.type", action);
+const idiotsCount = (
+  state = defaultIdiotsCount,
+  action: { type: any; idiotsCount: number }
+) => {
+  let idiotsCount;
   switch (action.type) {
-    case constants.BURN_IDIOT:
-      idiots = state - action.idiots;
+    case constants.SET_SCORE:
+      idiotsCount = action.idiotsCount;
+      break;
+    case constants.DECREASE_IDIOTS:
+      idiotsCount = state - action.idiotsCount;
+      break;
+    case constants.INCREASE_IDIOTS:
+      idiotsCount = state + action.idiotsCount;
       break;
     default:
-      idiots = initialState || state;
+      idiotsCount = state;
   }
-  console.log("reducer idiots", state, action, idiots);
-  return idiots;
+  return idiotsCount;
 };
 
-export default idiots;
+export default idiotsCount;
